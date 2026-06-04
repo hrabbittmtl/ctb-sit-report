@@ -505,27 +505,29 @@ function App() {
   const [filterStatus, setFilterStatus] = useState("All");
   const [filterRun, setFilterRun] = useState("All");
   const [expandedRun, setExpandedRun] = useState(null);
+  const [autoLoading, setAutoLoading] = useState(true);
+  const [autoError, setAutoError] = useState(null);
+
+  const processText = useCallback((text, label) => {
+    try {
+      const { meta, rows } = parseCSV(text);
+      const lbl = meta["Created At"] || label;
+      setDatasets(prev => [...prev.filter(d => d.label !== lbl), { label: lbl, meta, rows, loadedAt: new Date().toLocaleString() }]);
+      setError(null);
+    } catch (err) { setError(err.message); }
+  }, []);
+
+  React.useEffect(() => {
+    fetch("https://raw.githubusercontent.com/hrabbittmtl/ctb-sit-report/main/test_run_detailed_report.csv?nocache=" + Date.now())
+      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(text => { processText(text, "test_run_detailed_report.csv"); setAutoLoading(false); })
+      .catch(err => { setAutoError(err.message); setAutoLoading(false); });
+  }, []);
+
   const handleFile = useCallback(file => {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = e => {
-      try {
-        const {
-          meta,
-          rows
-        } = parseCSV(e.target.result);
-        const label = meta["Created At"] || file.name;
-        setDatasets(prev => [...prev.filter(d => d.label !== label), {
-          label,
-          meta,
-          rows,
-          loadedAt: new Date().toLocaleString()
-        }]);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+    reader.onload = e => { processText(e.target.result, file.name); };
     reader.readAsText(file);
   }, []);
   const latest = datasets[datasets.length - 1];
@@ -695,6 +697,49 @@ function App() {
     textTransform: "uppercase",
     letterSpacing: "0.8px"
   };
+  if (autoLoading) return React.createElement("div", {
+    style: { minHeight:"100vh", background:"#F2F6F7", display:"flex", flexDirection:"column",
+      alignItems:"center", justifyContent:"center", gap:20,
+      fontFamily:"'Trebuchet MS', system-ui, sans-serif" }
+  },
+    React.createElement("div", { style:{ background:"#003036", borderRadius:4, width:52, height:52,
+      display:"flex", alignItems:"center", justifyContent:"center",
+      fontWeight:800, fontSize:18, color:"#E6D27C" } }, "MT"),
+    React.createElement("div", { style:{ textAlign:"center" } },
+      React.createElement("div", { style:{ fontSize:11, fontWeight:700, letterSpacing:"2.5px",
+        color:"#004048", textTransform:"uppercase", marginBottom:8 } }, "Monument Technology · CTB · Milestone 1"),
+      React.createElement("div", { style:{ fontSize:22, fontWeight:700, color:"#003036", marginBottom:6 } }, "SIT Execution Tracker"),
+      React.createElement("div", { style:{ fontSize:13, color:"#4F4F4F" } }, "Loading latest data...")
+    ),
+    React.createElement("div", { style:{ width:220, height:5, background:"#D6DEE0", borderRadius:3, overflow:"hidden" } },
+      React.createElement("div", { style:{ height:"100%", background:"#E6D27C", borderRadius:3,
+        animation:"pulse 1.4s ease-in-out infinite alternate", width:"50%" } })
+    ),
+    React.createElement("style", null, "@keyframes pulse { from{margin-left:0} to{margin-left:50%} }")
+  );
+
+  if (autoError) return React.createElement("div", {
+    style: { minHeight:"100vh", background:"#F2F6F7", display:"flex", flexDirection:"column",
+      alignItems:"center", justifyContent:"center", gap:16,
+      fontFamily:"'Trebuchet MS', system-ui, sans-serif" }
+  },
+    React.createElement("div", { style:{ background:"#003036", borderRadius:4, width:52, height:52,
+      display:"flex", alignItems:"center", justifyContent:"center",
+      fontWeight:800, fontSize:18, color:"#E6D27C" } }, "MT"),
+    React.createElement("div", { style:{ textAlign:"center", maxWidth:480 } },
+      React.createElement("div", { style:{ fontSize:16, fontWeight:700, color:"#003036", marginBottom:8 } }, "Could not auto-load data"),
+      React.createElement("div", { style:{ fontSize:13, color:"#4F4F4F", marginBottom:16 } }, autoError),
+      React.createElement("div", { style:{ fontSize:12, color:"#4F4F4F" } }, "Upload the CSV manually below:")
+    ),
+    React.createElement("div", { onClick:() => document.getElementById("fallback-fu").click(),
+      style:{ border:"2px dashed #A0ADB0", borderRadius:10, padding:"32px 40px", textAlign:"center",
+        background:"#fff", cursor:"pointer", maxWidth:400 } },
+      React.createElement("div", { style:{ fontSize:13, color:"#003036", fontWeight:600 } }, "📂 Click to upload CSV"),
+      React.createElement("input", { id:"fallback-fu", type:"file", accept:".csv", style:{ display:"none" },
+        onChange: e => { handleFile(e.target.files[0]); setAutoError(null); } })
+    )
+  );
+
   if (!latest) return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
