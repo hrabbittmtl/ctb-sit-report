@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CTB M1 – SIT Test Report</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIT Execution Tracker – Monument Technology</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; background: #F4F5F7; }
-    select, input, button { font-family: inherit; }
+    body { font-family: 'Trebuchet MS', system-ui, sans-serif; background: #F2F6F7; color: #003036; }
+    select, input, button, label { font-family: inherit; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #F4F5F7; }
-    ::-webkit-scrollbar-thumb { background: #C1C7D0; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #F2F6F7; }
+    ::-webkit-scrollbar-thumb { background: #A0ADB0; border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -323,137 +323,119 @@ License: MIT
 */
 !function(e,t){"function"==typeof define&&define.amd?define([],t):"object"==typeof module&&"undefined"!=typeof exports?module.exports=t():e.Papa=t()}(this,function s(){"use strict";var f="undefined"!=typeof self?self:"undefined"!=typeof window?window:void 0!==f?f:{};var n=!f.document&&!!f.postMessage,o=f.IS_PAPA_WORKER||!1,a={},u=0,b={parse:function(e,t){var r=(t=t||{}).dynamicTyping||!1;J(r)&&(t.dynamicTypingFunction=r,r={});if(t.dynamicTyping=r,t.transform=!!J(t.transform)&&t.transform,t.worker&&b.WORKERS_SUPPORTED){var i=function(){if(!b.WORKERS_SUPPORTED)return!1;var e=(r=f.URL||f.webkitURL||null,i=s.toString(),b.BLOB_URL||(b.BLOB_URL=r.createObjectURL(new Blob(["var global = (function() { if (typeof self !== 'undefined') { return self; } if (typeof window !== 'undefined') { return window; } if (typeof global !== 'undefined') { return global; } return {}; })(); global.IS_PAPA_WORKER=true; ","(",i,")();"],{type:"text/javascript"})))),t=new f.Worker(e);var r,i;return t.onmessage=_,t.id=u++,a[t.id]=t}();return i.userStep=t.step,i.userChunk=t.chunk,i.userComplete=t.complete,i.userError=t.error,t.step=J(t.step),t.chunk=J(t.chunk),t.complete=J(t.complete),t.error=J(t.error),delete t.worker,void i.postMessage({input:e,config:t,workerId:i.id})}var n=null;b.NODE_STREAM_INPUT,"string"==typeof e?(e=function(e){if(65279===e.charCodeAt(0))return e.slice(1);return e}(e),n=t.download?new l(t):new p(t)):!0===e.readable&&J(e.read)&&J(e.on)?n=new g(t):(f.File&&e instanceof File||e instanceof Object)&&(n=new c(t));return n.stream(e)},unparse:function(e,t){var n=!1,_=!0,m=",",y="\r\n",s='"',a=s+s,r=!1,i=null,o=!1;!function(){if("object"!=typeof t)return;"string"!=typeof t.delimiter||b.BAD_DELIMITERS.filter(function(e){return-1!==t.delimiter.indexOf(e)}).length||(m=t.delimiter);("boolean"==typeof t.quotes||"function"==typeof t.quotes||Array.isArray(t.quotes))&&(n=t.quotes);"boolean"!=typeof t.skipEmptyLines&&"string"!=typeof t.skipEmptyLines||(r=t.skipEmptyLines);"string"==typeof t.newline&&(y=t.newline);"string"==typeof t.quoteChar&&(s=t.quoteChar);"boolean"==typeof t.header&&(_=t.header);if(Array.isArray(t.columns)){if(0===t.columns.length)throw new Error("Option columns is empty");i=t.columns}void 0!==t.escapeChar&&(a=t.escapeChar+s);("boolean"==typeof t.escapeFormulae||t.escapeFormulae instanceof RegExp)&&(o=t.escapeFormulae instanceof RegExp?t.escapeFormulae:/^[=+\-@\t\r].*$/)}();var u=new RegExp(Q(s),"g");"string"==typeof e&&(e=JSON.parse(e));if(Array.isArray(e)){if(!e.length||Array.isArray(e[0]))return h(null,e,r);if("object"==typeof e[0])return h(i||Object.keys(e[0]),e,r)}else if("object"==typeof e)return"string"==typeof e.data&&(e.data=JSON.parse(e.data)),Array.isArray(e.data)&&(e.fields||(e.fields=e.meta&&e.meta.fields||i),e.fields||(e.fields=Array.isArray(e.data[0])?e.fields:"object"==typeof e.data[0]?Object.keys(e.data[0]):[]),Array.isArray(e.data[0])||"object"==typeof e.data[0]||(e.data=[e.data])),h(e.fields||[],e.data||[],r);throw new Error("Unable to serialize unrecognized input");function h(e,t,r){var i="";"string"==typeof e&&(e=JSON.parse(e)),"string"==typeof t&&(t=JSON.parse(t));var n=Array.isArray(e)&&0<e.length,s=!Array.isArray(t[0]);if(n&&_){for(var a=0;a<e.length;a++)0<a&&(i+=m),i+=v(e[a],a);0<t.length&&(i+=y)}for(var o=0;o<t.length;o++){var u=n?e.length:t[o].length,h=!1,f=n?0===Object.keys(t[o]).length:0===t[o].length;if(r&&!n&&(h="greedy"===r?""===t[o].join("").trim():1===t[o].length&&0===t[o][0].length),"greedy"===r&&n){for(var d=[],l=0;l<u;l++){var c=s?e[l]:l;d.push(t[o][c])}h=""===d.join("").trim()}if(!h){for(var p=0;p<u;p++){0<p&&!f&&(i+=m);var g=n&&s?e[p]:p;i+=v(t[o][g],p)}o<t.length-1&&(!r||0<u&&!f)&&(i+=y)}}return i}function v(e,t){if(null==e)return"";if(e.constructor===Date)return JSON.stringify(e).slice(1,25);var r=!1;o&&"string"==typeof e&&o.test(e)&&(e="'"+e,r=!0);var i=e.toString().replace(u,a);return(r=r||!0===n||"function"==typeof n&&n(e,t)||Array.isArray(n)&&n[t]||function(e,t){for(var r=0;r<t.length;r++)if(-1<e.indexOf(t[r]))return!0;return!1}(i,b.BAD_DELIMITERS)||-1<i.indexOf(m)||" "===i.charAt(0)||" "===i.charAt(i.length-1))?s+i+s:i}}};if(b.RECORD_SEP=String.fromCharCode(30),b.UNIT_SEP=String.fromCharCode(31),b.BYTE_ORDER_MARK="\ufeff",b.BAD_DELIMITERS=["\r","\n",'"',b.BYTE_ORDER_MARK],b.WORKERS_SUPPORTED=!n&&!!f.Worker,b.NODE_STREAM_INPUT=1,b.LocalChunkSize=10485760,b.RemoteChunkSize=5242880,b.DefaultDelimiter=",",b.Parser=E,b.ParserHandle=r,b.NetworkStreamer=l,b.FileStreamer=c,b.StringStreamer=p,b.ReadableStreamStreamer=g,f.jQuery){var d=f.jQuery;d.fn.parse=function(o){var r=o.config||{},u=[];return this.each(function(e){if(!("INPUT"===d(this).prop("tagName").toUpperCase()&&"file"===d(this).attr("type").toLowerCase()&&f.FileReader)||!this.files||0===this.files.length)return!0;for(var t=0;t<this.files.length;t++)u.push({file:this.files[t],inputElem:this,instanceConfig:d.extend({},r)})}),e(),this;function e(){if(0!==u.length){var e,t,r,i,n=u[0];if(J(o.before)){var s=o.before(n.file,n.inputElem);if("object"==typeof s){if("abort"===s.action)return e="AbortError",t=n.file,r=n.inputElem,i=s.reason,void(J(o.error)&&o.error({name:e},t,r,i));if("skip"===s.action)return void h();"object"==typeof s.config&&(n.instanceConfig=d.extend(n.instanceConfig,s.config))}else if("skip"===s)return void h()}var a=n.instanceConfig.complete;n.instanceConfig.complete=function(e){J(a)&&a(e,n.file,n.inputElem),h()},b.parse(n.file,n.instanceConfig)}else J(o.complete)&&o.complete()}function h(){u.splice(0,1),e()}}}function h(e){this._handle=null,this._finished=!1,this._completed=!1,this._halted=!1,this._input=null,this._baseIndex=0,this._partialLine="",this._rowCount=0,this._start=0,this._nextChunk=null,this.isFirstChunk=!0,this._completeResults={data:[],errors:[],meta:{}},function(e){var t=w(e);t.chunkSize=parseInt(t.chunkSize),e.step||e.chunk||(t.chunkSize=null);this._handle=new r(t),(this._handle.streamer=this)._config=t}.call(this,e),this.parseChunk=function(e,t){if(this.isFirstChunk&&J(this._config.beforeFirstChunk)){var r=this._config.beforeFirstChunk(e);void 0!==r&&(e=r)}this.isFirstChunk=!1,this._halted=!1;var i=this._partialLine+e;this._partialLine="";var n=this._handle.parse(i,this._baseIndex,!this._finished);if(!this._handle.paused()&&!this._handle.aborted()){var s=n.meta.cursor;this._finished||(this._partialLine=i.substring(s-this._baseIndex),this._baseIndex=s),n&&n.data&&(this._rowCount+=n.data.length);var a=this._finished||this._config.preview&&this._rowCount>=this._config.preview;if(o)f.postMessage({results:n,workerId:b.WORKER_ID,finished:a});else if(J(this._config.chunk)&&!t){if(this._config.chunk(n,this._handle),this._handle.paused()||this._handle.aborted())return void(this._halted=!0);n=void 0,this._completeResults=void 0}return this._config.step||this._config.chunk||(this._completeResults.data=this._completeResults.data.concat(n.data),this._completeResults.errors=this._completeResults.errors.concat(n.errors),this._completeResults.meta=n.meta),this._completed||!a||!J(this._config.complete)||n&&n.meta.aborted||(this._config.complete(this._completeResults,this._input),this._completed=!0),a||n&&n.meta.paused||this._nextChunk(),n}this._halted=!0},this._sendError=function(e){J(this._config.error)?this._config.error(e):o&&this._config.error&&f.postMessage({workerId:b.WORKER_ID,error:e,finished:!1})}}function l(e){var i;(e=e||{}).chunkSize||(e.chunkSize=b.RemoteChunkSize),h.call(this,e),this._nextChunk=n?function(){this._readChunk(),this._chunkLoaded()}:function(){this._readChunk()},this.stream=function(e){this._input=e,this._nextChunk()},this._readChunk=function(){if(this._finished)this._chunkLoaded();else{if(i=new XMLHttpRequest,this._config.withCredentials&&(i.withCredentials=this._config.withCredentials),n||(i.onload=v(this._chunkLoaded,this),i.onerror=v(this._chunkError,this)),i.open(this._config.downloadRequestBody?"POST":"GET",this._input,!n),this._config.downloadRequestHeaders){var e=this._config.downloadRequestHeaders;for(var t in e)i.setRequestHeader(t,e[t])}if(this._config.chunkSize){var r=this._start+this._config.chunkSize-1;i.setRequestHeader("Range","bytes="+this._start+"-"+r)}try{i.send(this._config.downloadRequestBody)}catch(e){this._chunkError(e.message)}n&&0===i.status&&this._chunkError()}},this._chunkLoaded=function(){4===i.readyState&&(i.status<200||400<=i.status?this._chunkError():(this._start+=this._config.chunkSize?this._config.chunkSize:i.responseText.length,this._finished=!this._config.chunkSize||this._start>=function(e){var t=e.getResponseHeader("Content-Range");if(null===t)return-1;return parseInt(t.substring(t.lastIndexOf("/")+1))}(i),this.parseChunk(i.responseText)))},this._chunkError=function(e){var t=i.statusText||e;this._sendError(new Error(t))}}function c(e){var i,n;(e=e||{}).chunkSize||(e.chunkSize=b.LocalChunkSize),h.call(this,e);var s="undefined"!=typeof FileReader;this.stream=function(e){this._input=e,n=e.slice||e.webkitSlice||e.mozSlice,s?((i=new FileReader).onload=v(this._chunkLoaded,this),i.onerror=v(this._chunkError,this)):i=new FileReaderSync,this._nextChunk()},this._nextChunk=function(){this._finished||this._config.preview&&!(this._rowCount<this._config.preview)||this._readChunk()},this._readChunk=function(){var e=this._input;if(this._config.chunkSize){var t=Math.min(this._start+this._config.chunkSize,this._input.size);e=n.call(e,this._start,t)}var r=i.readAsText(e,this._config.encoding);s||this._chunkLoaded({target:{result:r}})},this._chunkLoaded=function(e){this._start+=this._config.chunkSize,this._finished=!this._config.chunkSize||this._start>=this._input.size,this.parseChunk(e.target.result)},this._chunkError=function(){this._sendError(i.error)}}function p(e){var r;h.call(this,e=e||{}),this.stream=function(e){return r=e,this._nextChunk()},this._nextChunk=function(){if(!this._finished){var e,t=this._config.chunkSize;return t?(e=r.substring(0,t),r=r.substring(t)):(e=r,r=""),this._finished=!r,this.parseChunk(e)}}}function g(e){h.call(this,e=e||{});var t=[],r=!0,i=!1;this.pause=function(){h.prototype.pause.apply(this,arguments),this._input.pause()},this.resume=function(){h.prototype.resume.apply(this,arguments),this._input.resume()},this.stream=function(e){this._input=e,this._input.on("data",this._streamData),this._input.on("end",this._streamEnd),this._input.on("error",this._streamError)},this._checkIsFinished=function(){i&&1===t.length&&(this._finished=!0)},this._nextChunk=function(){this._checkIsFinished(),t.length?this.parseChunk(t.shift()):r=!0},this._streamData=v(function(e){try{t.push("string"==typeof e?e:e.toString(this._config.encoding)),r&&(r=!1,this._checkIsFinished(),this.parseChunk(t.shift()))}catch(e){this._streamError(e)}},this),this._streamError=v(function(e){this._streamCleanUp(),this._sendError(e)},this),this._streamEnd=v(function(){this._streamCleanUp(),i=!0,this._streamData("")},this),this._streamCleanUp=v(function(){this._input.removeListener("data",this._streamData),this._input.removeListener("end",this._streamEnd),this._input.removeListener("error",this._streamError)},this)}function r(m){var a,o,u,i=Math.pow(2,53),n=-i,s=/^\s*-?(\d+\.?|\.\d+|\d+\.\d+)([eE][-+]?\d+)?\s*$/,h=/^((\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z)))$/,t=this,r=0,f=0,d=!1,e=!1,l=[],c={data:[],errors:[],meta:{}};if(J(m.step)){var p=m.step;m.step=function(e){if(c=e,_())g();else{if(g(),0===c.data.length)return;r+=e.data.length,m.preview&&r>m.preview?o.abort():(c.data=c.data[0],p(c,t))}}}function y(e){return"greedy"===m.skipEmptyLines?""===e.join("").trim():1===e.length&&0===e[0].length}function g(){return c&&u&&(k("Delimiter","UndetectableDelimiter","Unable to auto-detect delimiting character; defaulted to '"+b.DefaultDelimiter+"'"),u=!1),m.skipEmptyLines&&(c.data=c.data.filter(function(e){return!y(e)})),_()&&function(){if(!c)return;function e(e,t){J(m.transformHeader)&&(e=m.transformHeader(e,t)),l.push(e)}if(Array.isArray(c.data[0])){for(var t=0;_()&&t<c.data.length;t++)c.data[t].forEach(e);c.data.splice(0,1)}else c.data.forEach(e)}(),function(){if(!c||!m.header&&!m.dynamicTyping&&!m.transform)return c;function e(e,t){var r,i=m.header?{}:[];for(r=0;r<e.length;r++){var n=r,s=e[r];m.header&&(n=r>=l.length?"__parsed_extra":l[r]),m.transform&&(s=m.transform(s,n)),s=v(n,s),"__parsed_extra"===n?(i[n]=i[n]||[],i[n].push(s)):i[n]=s}return m.header&&(r>l.length?k("FieldMismatch","TooManyFields","Too many fields: expected "+l.length+" fields but parsed "+r,f+t):r<l.length&&k("FieldMismatch","TooFewFields","Too few fields: expected "+l.length+" fields but parsed "+r,f+t)),i}var t=1;!c.data.length||Array.isArray(c.data[0])?(c.data=c.data.map(e),t=c.data.length):c.data=e(c.data,0);m.header&&c.meta&&(c.meta.fields=l);return f+=t,c}()}function _(){return m.header&&0===l.length}function v(e,t){return r=e,m.dynamicTypingFunction&&void 0===m.dynamicTyping[r]&&(m.dynamicTyping[r]=m.dynamicTypingFunction(r)),!0===(m.dynamicTyping[r]||m.dynamicTyping)?"true"===t||"TRUE"===t||"false"!==t&&"FALSE"!==t&&(function(e){if(s.test(e)){var t=parseFloat(e);if(n<t&&t<i)return!0}return!1}(t)?parseFloat(t):h.test(t)?new Date(t):""===t?null:t):t;var r}function k(e,t,r,i){var n={type:e,code:t,message:r};void 0!==i&&(n.row=i),c.errors.push(n)}this.parse=function(e,t,r){var i=m.quoteChar||'"';if(m.newline||(m.newline=function(e,t){e=e.substring(0,1048576);var r=new RegExp(Q(t)+"([^]*?)"+Q(t),"gm"),i=(e=e.replace(r,"")).split("\r"),n=e.split("\n"),s=1<n.length&&n[0].length<i[0].length;if(1===i.length||s)return"\n";for(var a=0,o=0;o<i.length;o++)"\n"===i[o][0]&&a++;return a>=i.length/2?"\r\n":"\r"}(e,i)),u=!1,m.delimiter)J(m.delimiter)&&(m.delimiter=m.delimiter(e),c.meta.delimiter=m.delimiter);else{var n=function(e,t,r,i,n){var s,a,o,u;n=n||[",","\t","|",";",b.RECORD_SEP,b.UNIT_SEP];for(var h=0;h<n.length;h++){var f=n[h],d=0,l=0,c=0;o=void 0;for(var p=new E({comments:i,delimiter:f,newline:t,preview:10}).parse(e),g=0;g<p.data.length;g++)if(r&&y(p.data[g]))c++;else{var _=p.data[g].length;l+=_,void 0!==o?0<_&&(d+=Math.abs(_-o),o=_):o=_}0<p.data.length&&(l/=p.data.length-c),(void 0===a||d<=a)&&(void 0===u||u<l)&&1.99<l&&(a=d,s=f,u=l)}return{successful:!!(m.delimiter=s),bestDelimiter:s}}(e,m.newline,m.skipEmptyLines,m.comments,m.delimitersToGuess);n.successful?m.delimiter=n.bestDelimiter:(u=!0,m.delimiter=b.DefaultDelimiter),c.meta.delimiter=m.delimiter}var s=w(m);return m.preview&&m.header&&s.preview++,a=e,o=new E(s),c=o.parse(a,t,r),g(),d?{meta:{paused:!0}}:c||{meta:{paused:!1}}},this.paused=function(){return d},this.pause=function(){d=!0,o.abort(),a=J(m.chunk)?"":a.substring(o.getCharIndex())},this.resume=function(){t.streamer._halted?(d=!1,t.streamer.parseChunk(a,!0)):setTimeout(t.resume,3)},this.aborted=function(){return e},this.abort=function(){e=!0,o.abort(),c.meta.aborted=!0,J(m.complete)&&m.complete(c),a=""}}function Q(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(j){var z,M=(j=j||{}).delimiter,P=j.newline,U=j.comments,q=j.step,N=j.preview,B=j.fastMode,K=z=void 0===j.quoteChar||null===j.quoteChar?'"':j.quoteChar;if(void 0!==j.escapeChar&&(K=j.escapeChar),("string"!=typeof M||-1<b.BAD_DELIMITERS.indexOf(M))&&(M=","),U===M)throw new Error("Comment character same as delimiter");!0===U?U="#":("string"!=typeof U||-1<b.BAD_DELIMITERS.indexOf(U))&&(U=!1),"\n"!==P&&"\r"!==P&&"\r\n"!==P&&(P="\n");var W=0,H=!1;this.parse=function(i,t,r){if("string"!=typeof i)throw new Error("Input must be a string");var n=i.length,e=M.length,s=P.length,a=U.length,o=J(q),u=[],h=[],f=[],d=W=0;if(!i)return L();if(j.header&&!t){var l=i.split(P)[0].split(M),c=[],p={},g=!1;for(var _ in l){var m=l[_];J(j.transformHeader)&&(m=j.transformHeader(m,_));var y=m,v=p[m]||0;for(0<v&&(g=!0,y=m+"_"+v),p[m]=v+1;c.includes(y);)y=y+"_"+v;c.push(y)}if(g){var k=i.split(P);k[0]=c.join(M),i=k.join(P)}}if(B||!1!==B&&-1===i.indexOf(z)){for(var b=i.split(P),E=0;E<b.length;E++){if(f=b[E],W+=f.length,E!==b.length-1)W+=P.length;else if(r)return L();if(!U||f.substring(0,a)!==U){if(o){if(u=[],I(f.split(M)),F(),H)return L()}else I(f.split(M));if(N&&N<=E)return u=u.slice(0,N),L(!0)}}return L()}for(var w=i.indexOf(M,W),R=i.indexOf(P,W),C=new RegExp(Q(K)+Q(z),"g"),S=i.indexOf(z,W);;)if(i[W]!==z)if(U&&0===f.length&&i.substring(W,W+a)===U){if(-1===R)return L();W=R+s,R=i.indexOf(P,W),w=i.indexOf(M,W)}else if(-1!==w&&(w<R||-1===R))f.push(i.substring(W,w)),W=w+e,w=i.indexOf(M,W);else{if(-1===R)break;if(f.push(i.substring(W,R)),D(R+s),o&&(F(),H))return L();if(N&&u.length>=N)return L(!0)}else for(S=W,W++;;){if(-1===(S=i.indexOf(z,S+1)))return r||h.push({type:"Quotes",code:"MissingQuotes",message:"Quoted field unterminated",row:u.length,index:W}),T();if(S===n-1)return T(i.substring(W,S).replace(C,z));if(z!==K||i[S+1]!==K){if(z===K||0===S||i[S-1]!==K){-1!==w&&w<S+1&&(w=i.indexOf(M,S+1)),-1!==R&&R<S+1&&(R=i.indexOf(P,S+1));var O=A(-1===R?w:Math.min(w,R));if(i.substr(S+1+O,e)===M){f.push(i.substring(W,S).replace(C,z)),i[W=S+1+O+e]!==z&&(S=i.indexOf(z,W)),w=i.indexOf(M,W),R=i.indexOf(P,W);break}var x=A(R);if(i.substring(S+1+x,S+1+x+s)===P){if(f.push(i.substring(W,S).replace(C,z)),D(S+1+x+s),w=i.indexOf(M,W),S=i.indexOf(z,W),o&&(F(),H))return L();if(N&&u.length>=N)return L(!0);break}h.push({type:"Quotes",code:"InvalidQuotes",message:"Trailing quote on quoted field is malformed",row:u.length,index:W}),S++}}else S++}return T();function I(e){u.push(e),d=W}function A(e){var t=0;if(-1!==e){var r=i.substring(S+1,e);r&&""===r.trim()&&(t=r.length)}return t}function T(e){return r||(void 0===e&&(e=i.substring(W)),f.push(e),W=n,I(f),o&&F()),L()}function D(e){W=e,I(f),f=[],R=i.indexOf(P,W)}function L(e){return{data:u,errors:h,meta:{delimiter:M,linebreak:P,aborted:H,truncated:!!e,cursor:d+(t||0)}}}function F(){q(L()),u=[],h=[]}},this.abort=function(){H=!0},this.getCharIndex=function(){return W}}function _(e){var t=e.data,r=a[t.workerId],i=!1;if(t.error)r.userError(t.error,t.file);else if(t.results&&t.results.data){var n={abort:function(){i=!0,m(t.workerId,{data:[],errors:[],meta:{aborted:!0}})},pause:y,resume:y};if(J(r.userStep)){for(var s=0;s<t.results.data.length&&(r.userStep({data:t.results.data[s],errors:t.results.errors,meta:t.results.meta},n),!i);s++);delete t.results}else J(r.userChunk)&&(r.userChunk(t.results,n,t.file),delete t.results)}t.finished&&!i&&m(t.workerId,t.results)}function m(e,t){var r=a[e];J(r.userComplete)&&r.userComplete(t),r.terminate(),delete a[e]}function y(){throw new Error("Not implemented.")}function w(e){if("object"!=typeof e||null===e)return e;var t=Array.isArray(e)?[]:{};for(var r in e)t[r]=w(e[r]);return t}function v(e,t){return function(){e.apply(t,arguments)}}function J(e){return"function"==typeof e}return o&&(f.onmessage=function(e){var t=e.data;void 0===b.WORKER_ID&&t&&(b.WORKER_ID=t.workerId);if("string"==typeof t.input)f.postMessage({workerId:b.WORKER_ID,results:b.parse(t.input,t.config),finished:!0});else if(f.File&&t.input instanceof File||t.input instanceof Object){var r=b.parse(t.input,t.config);r&&f.postMessage({workerId:b.WORKER_ID,results:r,finished:!0})}}),(l.prototype=Object.create(h.prototype)).constructor=l,(c.prototype=Object.create(h.prototype)).constructor=c,(p.prototype=Object.create(p.prototype)).constructor=p,(g.prototype=Object.create(h.prototype)).constructor=g,b});</script>
 <script>
-
 const { useState, useCallback, useMemo } = React;
-
-// ─── Colour tokens ───────────────────────────────────────────────────────────
 const STATUS_CFG = {
   Passed: {
-    bg: "#E3FCEF",
-    text: "#006644",
-    bar: "#00875A",
-    dot: "#00875A"
+    bg: "#B8F1CC",
+    text: "#003036",
+    bar: "#18B89F"
   },
   Failed: {
-    bg: "#FFEBE6",
-    text: "#BF2600",
-    bar: "#DE350B",
-    dot: "#DE350B"
+    bg: "#FFE5E3",
+    text: "#8B1A14",
+    bar: "#FDA39C"
   },
   Blocked: {
-    bg: "#FFF7D6",
-    text: "#FF8B00",
-    bar: "#FF991F",
-    dot: "#FF8B00"
+    bg: "#FEF2C2",
+    text: "#6B4C00",
+    bar: "#E6D27C"
   },
   Untested: {
-    bg: "#F4F5F7",
-    text: "#5E6C84",
-    bar: "#C1C7D0",
-    dot: "#C1C7D0"
+    bg: "#EEF1F2",
+    text: "#4F4F4F",
+    bar: "#A0ADB0"
   },
   "In Progress": {
-    bg: "#DEEBFF",
-    text: "#0747A6",
-    bar: "#0052CC",
-    dot: "#0052CC"
+    bg: "#D6EEF5",
+    text: "#004048",
+    bar: "#004048"
   }
 };
 const STATUS_ORDER = ["Passed", "Failed", "Blocked", "In Progress", "Untested"];
-const PLATFORMS = ["Android", "iOS", "Web", "Salesforce", "General"];
-function getCfg(s) {
-  return STATUS_CFG[s] || STATUS_CFG["Untested"];
-}
-
-// ─── CSV Parser ───────────────────────────────────────────────────────────────
+const getCfg = s => STATUS_CFG[s] || STATUS_CFG["Untested"];
 function parseCSV(text) {
   const lines = text.split("\n");
   const hdrIdx = lines.findIndex(l => l.startsWith("Test Case Id,"));
-  if (hdrIdx < 0) throw new Error("Cannot find data header row.");
-
-  // Pull metadata from top block
+  if (hdrIdx < 0) throw new Error("Cannot find data header — please use a BrowserStack Test Run Detailed Report CSV.");
   const meta = {};
   for (let i = 0; i < hdrIdx; i++) {
     const parts = lines[i].split(",");
     if (parts[0] && parts[1]) meta[parts[0].trim()] = parts[1].trim();
   }
-  const csvBlock = lines.slice(hdrIdx).join("\n");
   const {
     data,
     errors
-  } = Papa.parse(csvBlock, {
+  } = Papa.parse(lines.slice(hdrIdx).join("\n"), {
     header: true,
     skipEmptyLines: true
   });
   if (errors.length && !data.length) throw new Error(errors[0].message);
-  function getPlatform(row) {
+  const getPlatform = row => {
     const last = (row["Folder Path"] || "").split("/").pop().trim();
     if (last === "AOS") return "Android";
     if (last === "iOS") return "iOS";
     if (last === "WEB") return "Web";
     if (last === "SF") return "Salesforce";
     return "General";
-  }
-  function getReq(row) {
-    const parts = (row["Folder Path"] || "").split("/");
-    return parts.length >= 3 ? parts[2].trim() : row["Folder Path"];
-  }
-  function cleanReqLabel(r) {
-    // Shorten for display
-    return r.replace(/^HR-/, "").replace(/\s*\|.*$/, "").trim() || r;
-  }
-  const rows = data.map(r => ({
-    id: r["Test Case Id"],
-    title: r["Test Case Title"],
-    priority: r["Test Case Priority"] || "Medium",
-    status: r["Test Run Latest Status"] || "Untested",
-    run: r["Test Run Title"],
-    runId: r["Test Run ID"],
-    platform: getPlatform(r),
-    req: getReq(r),
-    reqLabel: cleanReqLabel(getReq(r)),
-    assignee: r["Test Run Assignee"] || "",
-    updatedAt: r["Test Run Last Updated At"]
-  }));
+  };
+  const rows = data.map(r => {
+    const updatedRaw = r["Test Run Last Updated At"] || "";
+    const updatedDate = updatedRaw ? updatedRaw.substring(0, 10) : null;
+    const assignee = r["Test Case Assignee"] || r["Test Run Assignee"] || "Unassigned";
+    return {
+      id: r["Test Case Id"],
+      title: r["Test Case Title"],
+      priority: r["Test Case Priority"] || "Medium",
+      status: r["Test Run Latest Status"] || "Untested",
+      assignee,
+      platform: getPlatform(r),
+      req: (() => {
+        const p = (r["Folder Path"] || "").split("/");
+        return p.length >= 3 ? p[2].trim() : r["Folder Path"];
+      })(),
+      run: r["Test Run Title"] || "Unknown Run",
+      runId: r["Test Run ID"] || "",
+      updatedAt: updatedRaw,
+      updatedDate,
+      updatedBy: r["Test Run Last Updated By"] || assignee
+    };
+  });
   return {
     meta,
     rows
   };
 }
-
-// ─── Small helpers ────────────────────────────────────────────────────────────
-function StatusBadge({
-  status,
-  count
+function StatusPill({
+  status
 }) {
   const c = getCfg(status);
   return /*#__PURE__*/React.createElement("span", {
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 5,
+      gap: 4,
       background: c.bg,
       color: c.text,
-      padding: "2px 8px",
+      padding: "2px 7px",
       borderRadius: 4,
-      fontSize: 12,
+      fontSize: 11,
       fontWeight: 700,
       whiteSpace: "nowrap"
     }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      width: 7,
-      height: 7,
-      borderRadius: "50%",
-      background: c.dot,
-      flexShrink: 0
-    }
-  }), status, count !== undefined ? ` (${count})` : "");
+  }, status);
 }
 function MiniBar({
   counts,
   total
 }) {
+  if (!total) return /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 8,
+      borderRadius: 4,
+      background: "#E0E0E0",
+      minWidth: 60
+    }
+  });
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
@@ -461,7 +443,7 @@ function MiniBar({
       borderRadius: 4,
       overflow: "hidden",
       background: "#E0E0E0",
-      minWidth: 80
+      minWidth: 60
     }
   }, STATUS_ORDER.map(s => {
     const n = counts[s] || 0;
@@ -476,352 +458,325 @@ function MiniBar({
     });
   }));
 }
-function BigDonut({
-  counts,
-  total
+function TrendSparkline({
+  dailyTotals,
+  dates
 }) {
-  // Simple SVG donut
-  const radius = 70,
-    stroke = 18,
-    cx = 90,
-    cy = 90;
-  const circumference = 2 * Math.PI * radius;
-  let offset = 0;
-  const segments = STATUS_ORDER.map(s => {
-    const n = counts[s] || 0;
-    const pct = total ? n / total : 0;
-    const dash = pct * circumference;
-    const seg = {
-      s,
-      n,
-      dash,
-      offset
-    };
-    offset += dash;
-    return seg;
+  if (!dates.length || dailyTotals.every(v => !v)) return null;
+  const max = Math.max(...dailyTotals, 1);
+  const w = 100,
+    h = 28,
+    pad = 2;
+  const pts = dailyTotals.map((v, i) => {
+    const x = pad + i / Math.max(dates.length - 1, 1) * (w - pad * 2);
+    const y = h - pad - v / max * (h - pad * 2);
+    return `${x},${y}`;
   });
-  const passed = counts["Passed"] || 0;
-  const failed = counts["Failed"] || 0;
-  const blocked = counts["Blocked"] || 0;
-  const pct = total ? Math.round(passed / total * 100) : 0;
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("svg", {
+    width: w,
+    height: h,
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 24
+      overflow: "visible"
     }
-  }, /*#__PURE__*/React.createElement("svg", {
-    width: 180,
-    height: 180,
-    viewBox: "0 0 180 180"
-  }, /*#__PURE__*/React.createElement("circle", {
-    cx: cx,
-    cy: cy,
-    r: radius,
+  }, /*#__PURE__*/React.createElement("polyline", {
+    points: pts.join(" "),
     fill: "none",
-    stroke: "#F0F0F0",
-    strokeWidth: stroke
-  }), segments.map(({
-    s,
-    dash,
-    offset: o
-  }) => dash > 0 && /*#__PURE__*/React.createElement("circle", {
-    key: s,
-    cx: cx,
-    cy: cy,
-    r: radius,
-    fill: "none",
-    stroke: getCfg(s).bar,
-    strokeWidth: stroke,
-    strokeDasharray: `${dash} ${circumference - dash}`,
-    strokeDashoffset: circumference / 4 - o,
-    style: {
-      transition: "stroke-dasharray 0.6s ease"
-    }
-  })), /*#__PURE__*/React.createElement("text", {
-    x: cx,
-    y: cy - 10,
-    textAnchor: "middle",
-    fontSize: 26,
-    fontWeight: 800,
-    fill: "#172B4D"
-  }, pct, "%"), /*#__PURE__*/React.createElement("text", {
-    x: cx,
-    y: cy + 14,
-    textAnchor: "middle",
-    fontSize: 11,
-    fill: "#6B778C"
-  }, "Passed"), /*#__PURE__*/React.createElement("text", {
-    x: cx,
-    y: cy + 28,
-    textAnchor: "middle",
-    fontSize: 10,
-    fill: "#999"
-  }, passed, "/", total)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 8
-    }
-  }, STATUS_ORDER.map(s => {
-    const n = counts[s] || 0;
-    if (!n && s === "Untested" && total) return /*#__PURE__*/React.createElement("div", {
-      key: s,
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        fontSize: 13
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        width: 10,
-        height: 10,
-        borderRadius: 2,
-        background: getCfg(s).bar,
-        flexShrink: 0
-      }
-    }), /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "#5E6C84"
-      }
-    }, s), /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontWeight: 700,
-        color: "#172B4D",
-        marginLeft: "auto",
-        paddingLeft: 12
-      }
-    }, n));
-    if (!n) return null;
-    return /*#__PURE__*/React.createElement("div", {
-      key: s,
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        fontSize: 13
-      }
-    }, /*#__PURE__*/React.createElement("span", {
-      style: {
-        width: 10,
-        height: 10,
-        borderRadius: 2,
-        background: getCfg(s).bar,
-        flexShrink: 0
-      }
-    }), /*#__PURE__*/React.createElement("span", {
-      style: {
-        color: "#172B4D"
-      }
-    }, s), /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontWeight: 700,
-        color: getCfg(s).text,
-        marginLeft: "auto",
-        paddingLeft: 12
-      }
-    }, n, " ", /*#__PURE__*/React.createElement("span", {
-      style: {
-        fontWeight: 400,
-        color: "#999",
-        fontSize: 11
-      }
-    }, "(", Math.round(n / total * 100), "%)")));
-  })));
+    stroke: "#E6D27C",
+    strokeWidth: 1.5,
+    strokeLinejoin: "round"
+  }), pts.map((pt, i) => {
+    const [x, y] = pt.split(",");
+    return /*#__PURE__*/React.createElement("circle", {
+      key: i,
+      cx: x,
+      cy: y,
+      r: 2,
+      fill: "#E6D27C"
+    });
+  }));
 }
-
-// ─── Main Dashboard ───────────────────────────────────────────────────────────
-function SITDashboard() {
-  const [data, setData] = useState(null);
-  const [meta, setMeta] = useState(null);
+function App() {
+  const [datasets, setDatasets] = useState([]);
   const [error, setError] = useState(null);
   const [dragging, setDragging] = useState(false);
-  const [activeReq, setActiveReq] = useState(null);
+  const [tab, setTab] = useState("daily");
+  const [filterTester, setFilterTester] = useState("All");
+  const [filterDate, setFilterDate] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [filterPlatform, setFilterPlatform] = useState("All");
-  const [search, setSearch] = useState("");
-  const [tab, setTab] = useState("overview"); // overview | requirements | tests
-
+  const [filterRun, setFilterRun] = useState("All");
+  const [expandedRun, setExpandedRun] = useState(null);
   const handleFile = useCallback(file => {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = e => {
       try {
         const {
-          meta: m,
+          meta,
           rows
         } = parseCSV(e.target.result);
-        setMeta(m);
-        setData(rows);
+        const label = meta["Created At"] || file.name;
+        setDatasets(prev => [...prev.filter(d => d.label !== label), {
+          label,
+          meta,
+          rows,
+          loadedAt: new Date().toLocaleString()
+        }]);
         setError(null);
-        setActiveReq(null);
-        setFilterStatus("All");
-        setFilterPlatform("All");
-        setSearch("");
       } catch (err) {
         setError(err.message);
       }
     };
     reader.readAsText(file);
   }, []);
-  const onDrop = useCallback(e => {
-    e.preventDefault();
-    setDragging(false);
-    handleFile(e.dataTransfer.files[0]);
-  }, [handleFile]);
+  const latest = datasets[datasets.length - 1];
+  const allRows = latest ? latest.rows : [];
 
-  // ── Aggregations ──────────────────────────────────────────────────────────
-  const summary = useMemo(() => {
-    if (!data) return null;
-    const counts = {};
-    STATUS_ORDER.forEach(s => counts[s] = 0);
-    data.forEach(r => {
-      counts[r.status] = (counts[r.status] || 0) + 1;
-    });
-    return {
-      total: data.length,
-      counts
+  // ── Daily / Tester aggregations ───────────────────────────────────────────
+  const {
+    allDates,
+    allTesters,
+    dailyGrid,
+    testerTotals,
+    dateTotals,
+    grandTotal
+  } = useMemo(() => {
+    if (!allRows.length) return {
+      allDates: [],
+      allTesters: [],
+      dailyGrid: {},
+      testerTotals: {},
+      dateTotals: {},
+      grandTotal: 0
     };
-  }, [data]);
-  const byReq = useMemo(() => {
-    if (!data) return [];
-    const map = {};
-    data.forEach(r => {
-      if (!map[r.req]) map[r.req] = {
-        req: r.req,
-        label: r.reqLabel,
-        run: r.run,
-        counts: {},
-        platformCounts: {},
-        total: 0
+    const executed = allRows.filter(r => r.status !== "Untested" && r.updatedDate);
+    const datesSet = new Set(),
+      testersSet = new Set();
+    const grid = {};
+    executed.forEach(r => {
+      const t = r.updatedBy || r.assignee,
+        d = r.updatedDate;
+      datesSet.add(d);
+      testersSet.add(t);
+      if (!grid[t]) grid[t] = {};
+      if (!grid[t][d]) grid[t][d] = {};
+      grid[t][d][r.status] = (grid[t][d][r.status] || 0) + 1;
+    });
+    const allDates = [...datesSet].sort();
+    const allTesters = [...testersSet].sort();
+    const testerTotals = {};
+    allTesters.forEach(t => {
+      const counts = {};
+      STATUS_ORDER.forEach(s => counts[s] = 0);
+      allDates.forEach(d => {
+        if (grid[t]?.[d]) Object.entries(grid[t][d]).forEach(([s, n]) => counts[s] = (counts[s] || 0) + n);
+      });
+      testerTotals[t] = {
+        counts,
+        total: Object.values(counts).reduce((a, b) => a + b, 0)
       };
-      const m = map[r.req];
-      m.counts[r.status] = (m.counts[r.status] || 0) + 1;
-      if (!m.platformCounts[r.platform]) m.platformCounts[r.platform] = {};
-      m.platformCounts[r.platform][r.status] = (m.platformCounts[r.platform][r.status] || 0) + 1;
-      m.total++;
     });
-    return Object.values(map).sort((a, b) => {
-      const ap = (a.counts["Failed"] || 0) + (a.counts["Blocked"] || 0);
-      const bp = (b.counts["Failed"] || 0) + (b.counts["Blocked"] || 0);
-      return bp - ap || b.total - a.total;
-    });
-  }, [data]);
-  const filteredTests = useMemo(() => {
-    if (!data) return [];
-    return data.filter(r => (filterStatus === "All" || r.status === filterStatus) && (filterPlatform === "All" || r.platform === filterPlatform) && (!activeReq || r.req === activeReq) && (!search || r.title.toLowerCase().includes(search.toLowerCase()) || r.id.toLowerCase().includes(search.toLowerCase())));
-  }, [data, filterStatus, filterPlatform, activeReq, search]);
-  const byPlatform = useMemo(() => {
-    if (!data) return [];
-    const map = {};
-    data.forEach(r => {
-      if (!map[r.platform]) map[r.platform] = {
-        platform: r.platform,
-        counts: {},
-        total: 0
+    const dateTotals = {};
+    allDates.forEach(d => {
+      const counts = {};
+      STATUS_ORDER.forEach(s => counts[s] = 0);
+      allTesters.forEach(t => {
+        if (grid[t]?.[d]) Object.entries(grid[t][d]).forEach(([s, n]) => counts[s] = (counts[s] || 0) + n);
+      });
+      dateTotals[d] = {
+        counts,
+        total: Object.values(counts).reduce((a, b) => a + b, 0)
       };
-      map[r.platform].counts[r.status] = (map[r.platform].counts[r.status] || 0) + 1;
-      map[r.platform].total++;
     });
-    return PLATFORMS.map(p => map[p]).filter(Boolean);
-  }, [data]);
+    const grandTotal = Object.values(dateTotals).reduce((a, b) => a + b.total, 0);
+    return {
+      allDates,
+      allTesters,
+      dailyGrid: grid,
+      testerTotals,
+      dateTotals,
+      grandTotal
+    };
+  }, [allRows]);
 
-  // ── Styles ────────────────────────────────────────────────────────────────
+  // ── Test Run aggregations ─────────────────────────────────────────────────
+  const {
+    allRuns,
+    runStats
+  } = useMemo(() => {
+    if (!allRows.length) return {
+      allRuns: [],
+      runStats: {}
+    };
+    const map = {};
+    allRows.forEach(r => {
+      const run = r.run;
+      if (!map[run]) map[run] = {
+        run,
+        counts: {},
+        total: 0,
+        dailyCounts: {},
+        testerCounts: {},
+        platforms: new Set()
+      };
+      const m = map[run];
+      m.counts[r.status] = (m.counts[r.status] || 0) + 1;
+      m.total++;
+      m.platforms.add(r.platform);
+      // daily within run
+      if (r.status !== "Untested" && r.updatedDate) {
+        if (!m.dailyCounts[r.updatedDate]) m.dailyCounts[r.updatedDate] = {};
+        m.dailyCounts[r.updatedDate][r.status] = (m.dailyCounts[r.updatedDate][r.status] || 0) + 1;
+        // tester within run
+        const t = r.updatedBy || r.assignee;
+        if (!m.testerCounts[t]) m.testerCounts[t] = {};
+        m.testerCounts[t][r.status] = (m.testerCounts[t][r.status] || 0) + 1;
+      }
+    });
+    // convert platform Sets
+    Object.values(map).forEach(m => m.platforms = [...m.platforms]);
+    const allRuns = Object.keys(map).sort();
+    return {
+      allRuns,
+      runStats: map
+    };
+  }, [allRows]);
+  const overallCounts = useMemo(() => {
+    const c = {};
+    STATUS_ORDER.forEach(s => c[s] = 0);
+    allRows.forEach(r => c[r.status] = (c[r.status] || 0) + 1);
+    return c;
+  }, [allRows]);
+  const filteredTests = useMemo(() => {
+    return allRows.filter(r => (filterTester === "All" || (r.updatedBy || r.assignee) === filterTester) && (filterDate === "All" || r.updatedDate === filterDate) && (filterStatus === "All" || r.status === filterStatus) && (filterRun === "All" || r.run === filterRun));
+  }, [allRows, filterTester, filterDate, filterStatus, filterRun]);
+  const noData = !allDates.length;
+  const noRuns = !allRuns.length;
+
+  // ── MTL style constants ───────────────────────────────────────────────────
+  const MTL = {
+    deepTeal: "#003036",
+    midTeal: "#004048",
+    gold: "#E6D27C",
+    white: "#fff",
+    bg: "#F2F6F7",
+    border: "#D6DEE0",
+    grey: "#4F4F4F"
+  };
   const card = {
-    background: "#fff",
-    borderRadius: 8,
-    border: "1px solid #DFE1E6",
+    background: MTL.white,
+    borderRadius: 6,
+    border: `1px solid ${MTL.border}`,
+    borderTop: `3px solid ${MTL.gold}`,
+    padding: "20px 24px"
+  };
+  const cardPlain = {
+    background: MTL.white,
+    borderRadius: 6,
+    border: `1px solid ${MTL.border}`,
     padding: "20px 24px"
   };
   const tabBtn = t => ({
-    padding: "8px 18px",
-    border: "none",
-    borderRadius: 6,
+    padding: "8px 20px",
+    border: `1px solid ${MTL.border}`,
+    borderRadius: 5,
     cursor: "pointer",
     fontWeight: 600,
     fontSize: 13,
-    background: tab === t ? "#0052CC" : "#F4F5F7",
-    color: tab === t ? "#fff" : "#5E6C84",
-    transition: "all 0.15s"
+    background: tab === t ? MTL.deepTeal : MTL.white,
+    color: tab === t ? MTL.gold : MTL.midTeal
   });
-
-  // ── Upload Screen ─────────────────────────────────────────────────────────
-  if (!data) return /*#__PURE__*/React.createElement("div", {
+  const thStyle = {
+    background: MTL.deepTeal,
+    color: MTL.gold,
+    padding: "10px 12px",
+    textAlign: "left",
+    fontWeight: 700,
+    fontSize: 11,
+    textTransform: "uppercase",
+    letterSpacing: "0.8px"
+  };
+  if (!latest) return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
-      background: "#F4F5F7",
+      background: MTL.bg,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: 32,
-      fontFamily: "'DM Sans', system-ui, sans-serif"
+      padding: 32
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      marginBottom: 24,
+      marginBottom: 28,
       textAlign: "center"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 13,
+      fontSize: 11,
       fontWeight: 700,
-      letterSpacing: 2,
-      color: "#0052CC",
+      letterSpacing: 3,
+      color: MTL.midTeal,
       textTransform: "uppercase",
+      marginBottom: 10
+    }
+  }, "Monument Technology \xB7 CTB \xB7 Milestone 1"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: 30,
+      fontWeight: 800,
+      color: MTL.deepTeal,
       marginBottom: 8
     }
-  }, "Castle Trust Bank"), /*#__PURE__*/React.createElement("h1", {
+  }, "SIT Execution Tracker"), /*#__PURE__*/React.createElement("p", {
     style: {
-      margin: 0,
-      fontSize: 28,
-      fontWeight: 800,
-      color: "#172B4D"
+      color: MTL.grey,
+      fontSize: 14
     }
-  }, "SIT Test Report"), /*#__PURE__*/React.createElement("p", {
-    style: {
-      color: "#6B778C",
-      margin: "8px 0 0"
-    }
-  }, "Milestone 1 \xB7 Refresh by uploading a new BrowserStack extract")), /*#__PURE__*/React.createElement("div", {
-    onDrop: onDrop,
+  }, "Upload a BrowserStack extract to see daily test execution per tester and test run", /*#__PURE__*/React.createElement("br", null), "Re-upload at any time to refresh progress")), /*#__PURE__*/React.createElement("div", {
+    onDrop: e => {
+      e.preventDefault();
+      setDragging(false);
+      handleFile(e.dataTransfer.files[0]);
+    },
     onDragOver: e => {
       e.preventDefault();
       setDragging(true);
     },
     onDragLeave: () => setDragging(false),
+    onClick: () => document.getElementById("fu").click(),
     style: {
       width: "100%",
-      maxWidth: 480,
-      border: `2px dashed ${dragging ? "#0052CC" : "#B3BAC5"}`,
-      borderRadius: 12,
-      padding: "48px 32px",
+      maxWidth: 500,
+      border: `2px dashed ${dragging ? MTL.deepTeal : "#A0ADB0"}`,
+      borderRadius: 10,
+      padding: "52px 40px",
       textAlign: "center",
-      background: dragging ? "#DEEBFF" : "#fff",
-      cursor: "pointer",
-      transition: "all 0.2s"
-    },
-    onClick: () => document.getElementById("csv-upload").click()
+      background: dragging ? "#EEF8F5" : MTL.white,
+      cursor: "pointer"
+    }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 40,
-      marginBottom: 12
+      fontSize: 48,
+      marginBottom: 14
     }
   }, "\uD83D\uDCC2"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 700,
-      fontSize: 16,
-      color: "#172B4D",
-      marginBottom: 6
+      fontSize: 17,
+      color: MTL.deepTeal,
+      marginBottom: 8
     }
   }, "Drop your BrowserStack CSV here"), /*#__PURE__*/React.createElement("div", {
     style: {
-      color: "#6B778C",
+      color: MTL.grey,
       fontSize: 13
     }
-  }, "or click to browse \xB7 ", /*#__PURE__*/React.createElement("em", null, "Test Run Detailed Report"), " format"), /*#__PURE__*/React.createElement("input", {
-    id: "csv-upload",
+  }, "or ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: MTL.midTeal,
+      fontWeight: 600
+    }
+  }, "click to browse"), " \xB7 ", /*#__PURE__*/React.createElement("em", null, "Test Run Detailed Report format")), /*#__PURE__*/React.createElement("input", {
+    id: "fu",
     type: "file",
     accept: ".csv",
     style: {
@@ -832,66 +787,71 @@ function SITDashboard() {
     style: {
       marginTop: 16,
       padding: "12px 20px",
-      background: "#FFEBE6",
-      color: "#DE350B",
+      background: "#FFE5E3",
+      color: "#8B1A14",
       borderRadius: 8,
       fontSize: 13,
-      maxWidth: 480
+      maxWidth: 500
     }
-  }, "\u26A0\uFE0F ", error), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 24,
-      fontSize: 12,
-      color: "#97A0AF",
-      maxWidth: 480,
-      textAlign: "center"
-    }
-  }, "Export from BrowserStack \u2192 Reports \u2192 Test Run Detailed Report \u2192 Download CSV. No data leaves your browser."));
-
-  // ── Dashboard ─────────────────────────────────────────────────────────────
+  }, "\u26A0\uFE0F ", error));
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
-      background: "#F4F5F7",
-      fontFamily: "'DM Sans', system-ui, sans-serif",
-      color: "#172B4D"
+      background: MTL.bg,
+      color: MTL.deepTeal,
+      fontFamily: "'Trebuchet MS', system-ui, sans-serif"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#0052CC",
-      color: "#fff",
-      padding: "0 32px"
+      background: MTL.deepTeal,
+      borderBottom: `3px solid ${MTL.gold}`,
+      padding: "0 32px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      maxWidth: 1200,
+      maxWidth: 1280,
       margin: "0 auto",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      height: 64
+      height: 68
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 16
+      gap: 18
     }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
+      background: MTL.gold,
+      borderRadius: 4,
+      width: 36,
+      height: 36,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontWeight: 800,
+      fontSize: 14,
+      color: MTL.deepTeal,
+      flexShrink: 0
+    }
+  }, "MT"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
       fontWeight: 700,
-      letterSpacing: 2,
-      opacity: 0.7,
+      letterSpacing: "2.5px",
+      color: MTL.gold,
       textTransform: "uppercase"
     }
-  }, "Castle Trust Bank \xB7 Milestone 1"), /*#__PURE__*/React.createElement("div", {
+  }, "Monument Technology \xB7 CTB \xB7 Milestone 1"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 18,
-      fontWeight: 800,
-      lineHeight: 1.2
+      fontSize: 19,
+      fontWeight: 700,
+      color: MTL.white
     }
-  }, "SIT Test Report"))), /*#__PURE__*/React.createElement("div", {
+  }, "SIT Execution Tracker"))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 16,
@@ -900,26 +860,29 @@ function SITDashboard() {
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 12,
-      opacity: 0.8
+      color: "rgba(255,255,255,0.6)"
     }
-  }, meta?.["Created At"] ? `Extract: ${meta["Created At"]}` : "", " \xB7 ", summary.total, " tests"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      setData(null);
-      setMeta(null);
-    },
+  }, latest.meta?.["Created At"] && `Extract: ${latest.meta["Created At"]} · `, allRows.length, " tests \xB7 ", grandTotal, " executed"), /*#__PURE__*/React.createElement("label", {
     style: {
-      background: "rgba(255,255,255,0.15)",
-      border: "none",
-      borderRadius: 6,
-      color: "#fff",
-      padding: "6px 14px",
+      background: "rgba(230,210,124,0.15)",
+      border: `1px solid ${MTL.gold}`,
+      borderRadius: 5,
+      color: MTL.gold,
+      padding: "6px 16px",
       cursor: "pointer",
       fontSize: 12,
       fontWeight: 600
     }
-  }, "\u2191 Load New Extract")))), /*#__PURE__*/React.createElement("div", {
+  }, "\u2191 Load New Extract", /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    accept: ".csv",
     style: {
-      maxWidth: 1200,
+      display: "none"
+    },
+    onChange: e => handleFile(e.target.files[0])
+  }))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1280,
       margin: "0 auto",
       padding: "24px 32px"
     }
@@ -927,29 +890,56 @@ function SITDashboard() {
     style: {
       display: "flex",
       gap: 8,
-      marginBottom: 24
+      marginBottom: 24,
+      flexWrap: "wrap"
     }
-  }, [["overview", "Overview"], ["requirements", "By Requirement"], ["tests", "Test Cases"]].map(([t, label]) => /*#__PURE__*/React.createElement("button", {
+  }, [["daily", "📅 Daily Execution"], ["testers", "👤 By Tester"], ["runs", "🗂 By Test Run"], ["tests", "🔬 Test Detail"]].map(([t, l]) => /*#__PURE__*/React.createElement("button", {
     key: t,
     style: tabBtn(t),
     onClick: () => setTab(t)
-  }, label))), tab === "overview" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  }, l))), noData && /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...cardPlain,
+      background: "#FFFBF0",
+      border: `1px solid ${MTL.gold}`,
+      marginBottom: 20,
+      display: "flex",
+      alignItems: "center",
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28
+    }
+  }, "\u23F3"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700
+    }
+  }, "No executions recorded yet"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: MTL.grey,
+      marginTop: 4
+    }
+  }, "All ", allRows.length, " tests are Untested in this extract. Upload a fresh extract once testing begins and progress will appear here."))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(5,1fr)",
       gap: 16,
-      marginBottom: 24
+      marginBottom: 20
     }
   }, STATUS_ORDER.map(s => {
-    const n = summary.counts[s] || 0;
+    const n = overallCounts[s] || 0;
     const c = getCfg(s);
     return /*#__PURE__*/React.createElement("div", {
       key: s,
       style: {
-        ...card,
-        borderTop: `3px solid ${c.bar}`,
-        textAlign: "center",
-        padding: "16px 12px"
+        background: MTL.white,
+        borderRadius: 6,
+        border: `1px solid ${MTL.border}`,
+        borderLeft: `4px solid ${c.bar}`,
+        padding: "16px 18px",
+        textAlign: "center"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -960,200 +950,37 @@ function SITDashboard() {
     }, n), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "#6B778C",
+        color: MTL.grey,
         fontWeight: 600,
-        marginTop: 2
+        marginTop: 4
       }
     }, s), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#97A0AF"
+        color: "#A0ADB0"
       }
-    }, summary.total ? Math.round(n / summary.total * 100) : 0, "%"));
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 20,
-      marginBottom: 24
-    }
-  }, /*#__PURE__*/React.createElement("div", {
+    }, allRows.length ? Math.round(n / allRows.length * 100) : 0, "%"));
+  })), tab === "daily" && /*#__PURE__*/React.createElement("div", {
     style: card
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       fontWeight: 700,
-      marginBottom: 20,
-      fontSize: 14
+      fontSize: 14,
+      marginBottom: 4
     }
-  }, "Overall Progress"), /*#__PURE__*/React.createElement(BigDonut, {
-    counts: summary.counts,
-    total: summary.total
-  })), /*#__PURE__*/React.createElement("div", {
-    style: card
-  }, /*#__PURE__*/React.createElement("div", {
+  }, "Tests Executed Per Day Per Tester"), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontWeight: 700,
-      marginBottom: 16,
-      fontSize: 14
+      fontSize: 12,
+      color: MTL.grey,
+      marginBottom: 20
     }
-  }, "By Platform"), /*#__PURE__*/React.createElement("table", {
+  }, "Based on Test Run Last Updated At \xB7 excludes Untested"), noData ? /*#__PURE__*/React.createElement("div", {
     style: {
-      width: "100%",
-      borderCollapse: "collapse",
-      fontSize: 13
-    }
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
-    style: {
-      borderBottom: "2px solid #F4F5F7"
-    }
-  }, /*#__PURE__*/React.createElement("th", {
-    style: {
-      textAlign: "left",
-      padding: "6px 8px",
-      color: "#6B778C",
-      fontWeight: 600,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: 1
-    }
-  }, "Platform"), /*#__PURE__*/React.createElement("th", {
-    style: {
-      textAlign: "right",
-      padding: "6px 8px",
-      color: "#6B778C",
-      fontWeight: 600,
-      fontSize: 11
-    }
-  }, "Tests"), /*#__PURE__*/React.createElement("th", {
-    style: {
-      padding: "6px 8px",
-      color: "#6B778C",
-      fontWeight: 600,
-      fontSize: 11
-    }
-  }, "Progress"), STATUS_ORDER.slice(0, 4).map(s => /*#__PURE__*/React.createElement("th", {
-    key: s,
-    style: {
+      padding: "40px 0",
       textAlign: "center",
-      padding: "6px 4px",
-      color: getCfg(s).text,
-      fontWeight: 700,
-      fontSize: 11
+      color: "#A0ADB0"
     }
-  }, s[0])))), /*#__PURE__*/React.createElement("tbody", null, byPlatform.map(({
-    platform,
-    counts,
-    total
-  }) => /*#__PURE__*/React.createElement("tr", {
-    key: platform,
-    style: {
-      borderBottom: "1px solid #F4F5F7"
-    }
-  }, /*#__PURE__*/React.createElement("td", {
-    style: {
-      padding: "10px 8px",
-      fontWeight: 600
-    }
-  }, platform), /*#__PURE__*/React.createElement("td", {
-    style: {
-      padding: "10px 8px",
-      textAlign: "right",
-      color: "#6B778C"
-    }
-  }, total), /*#__PURE__*/React.createElement("td", {
-    style: {
-      padding: "10px 8px",
-      minWidth: 100
-    }
-  }, /*#__PURE__*/React.createElement(MiniBar, {
-    counts: counts,
-    total: total
-  })), STATUS_ORDER.slice(0, 4).map(s => /*#__PURE__*/React.createElement("td", {
-    key: s,
-    style: {
-      textAlign: "center",
-      padding: "10px 4px",
-      fontWeight: 700,
-      color: counts[s] ? getCfg(s).text : "#C1C7D0",
-      fontSize: 13
-    }
-  }, counts[s] || 0)))))))), /*#__PURE__*/React.createElement("div", {
-    style: card
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 16,
-      fontSize: 14
-    }
-  }, "By Assignee"), (() => {
-    const map = {};
-    data.forEach(r => {
-      if (!map[r.assignee]) map[r.assignee] = {
-        counts: {},
-        total: 0
-      };
-      map[r.assignee].counts[r.status] = (map[r.assignee].counts[r.status] || 0) + 1;
-      map[r.assignee].total++;
-    });
-    return /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "flex",
-        gap: 16,
-        flexWrap: "wrap"
-      }
-    }, Object.entries(map).map(([name, {
-      counts,
-      total
-    }]) => /*#__PURE__*/React.createElement("div", {
-      key: name,
-      style: {
-        flex: "1 1 200px",
-        background: "#F8F9FA",
-        borderRadius: 8,
-        padding: "14px 16px"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontWeight: 700,
-        fontSize: 13,
-        marginBottom: 8
-      }
-    }, name || "Unassigned"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 12,
-        color: "#6B778C",
-        marginBottom: 8
-      }
-    }, total, " tests"), /*#__PURE__*/React.createElement(MiniBar, {
-      counts: counts,
-      total: total
-    }), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "flex",
-        gap: 6,
-        marginTop: 8,
-        flexWrap: "wrap"
-      }
-    }, STATUS_ORDER.map(s => counts[s] > 0 && /*#__PURE__*/React.createElement("span", {
-      key: s,
-      style: {
-        fontSize: 11,
-        background: getCfg(s).bg,
-        color: getCfg(s).text,
-        padding: "2px 6px",
-        borderRadius: 3,
-        fontWeight: 700
-      }
-    }, s.split(" ")[0][0], ": ", counts[s]))))));
-  })())), tab === "requirements" && /*#__PURE__*/React.createElement("div", {
-    style: card
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontWeight: 700,
-      marginBottom: 16,
-      fontSize: 14
-    }
-  }, "Progress by Requirement / Test Run (", byReq.length, ")"), /*#__PURE__*/React.createElement("div", {
+  }, "No execution data yet.") : /*#__PURE__*/React.createElement("div", {
     style: {
       overflowX: "auto"
     }
@@ -1163,220 +990,641 @@ function SITDashboard() {
       borderCollapse: "collapse",
       fontSize: 13
     }
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
     style: {
-      background: "#F4F5F7",
-      borderBottom: "2px solid #DFE1E6"
+      ...thStyle,
+      minWidth: 140
     }
-  }, /*#__PURE__*/React.createElement("th", {
+  }, "Tester"), allDates.map(d => /*#__PURE__*/React.createElement("th", {
+    key: d,
     style: {
-      textAlign: "left",
-      padding: "10px 12px",
-      fontWeight: 700,
-      width: "32%"
+      ...thStyle,
+      textAlign: "center",
+      minWidth: 80,
+      whiteSpace: "nowrap"
     }
-  }, "Requirement"), /*#__PURE__*/React.createElement("th", {
+  }, new Date(d).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short"
+  }))), /*#__PURE__*/React.createElement("th", {
     style: {
-      textAlign: "right",
-      padding: "10px 8px",
-      fontWeight: 700,
-      width: 60
+      ...thStyle,
+      textAlign: "center",
+      minWidth: 70
     }
   }, "Total"), /*#__PURE__*/React.createElement("th", {
     style: {
-      padding: "10px 8px",
-      fontWeight: 700,
-      width: 140
+      ...thStyle,
+      minWidth: 110
     }
-  }, "Progress"), STATUS_ORDER.map(s => /*#__PURE__*/React.createElement("th", {
-    key: s,
-    style: {
-      textAlign: "center",
-      padding: "10px 6px",
-      fontWeight: 700,
-      color: getCfg(s).text,
-      fontSize: 11
-    }
-  }, s === "In Progress" ? "In Prog." : s)), /*#__PURE__*/React.createElement("th", {
-    style: {
-      padding: "10px 8px",
-      fontWeight: 700
-    }
-  }, "Platforms"))), /*#__PURE__*/React.createElement("tbody", null, byReq.map(({
-    req,
-    label,
-    run,
-    counts,
-    platformCounts,
-    total
-  }) => {
-    const hasFail = (counts["Failed"] || 0) + (counts["Blocked"] || 0) > 0;
-    const allPass = (counts["Passed"] || 0) === total;
+  }, "Trend"))), /*#__PURE__*/React.createElement("tbody", null, allTesters.map(tester => {
+    const dailyTotals = allDates.map(d => Object.values(dailyGrid[tester]?.[d] || {}).reduce((a, b) => a + b, 0));
+    const {
+      counts,
+      total
+    } = testerTotals[tester];
     return /*#__PURE__*/React.createElement("tr", {
-      key: req,
-      onClick: () => {
-        setActiveReq(req);
-        setTab("tests");
-      },
+      key: tester,
       style: {
-        borderBottom: "1px solid #F4F5F7",
-        cursor: "pointer",
-        background: activeReq === req ? "#DEEBFF" : hasFail ? "#FFFDF0" : "transparent"
+        borderBottom: `1px solid ${MTL.border}`
       },
-      onMouseEnter: e => e.currentTarget.style.background = "#F8F9FA",
-      onMouseLeave: e => e.currentTarget.style.background = activeReq === req ? "#DEEBFF" : hasFail ? "#FFFDF0" : "transparent"
+      onMouseEnter: e => e.currentTarget.style.background = "#F8FAFA",
+      onMouseLeave: e => e.currentTarget.style.background = "transparent"
     }, /*#__PURE__*/React.createElement("td", {
       style: {
-        padding: "12px 12px"
+        padding: "12px 14px",
+        fontWeight: 600
       }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, tester), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontWeight: 600,
-        color: "#172B4D",
-        fontSize: 12
+        marginTop: 4
       }
-    }, req.replace(/^HR-/, "")), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(MiniBar, {
+      counts: counts,
+      total: total
+    }))), allDates.map(d => {
+      const dc = dailyGrid[tester]?.[d] || {};
+      const dt = Object.values(dc).reduce((a, b) => a + b, 0);
+      return /*#__PURE__*/React.createElement("td", {
+        key: d,
+        style: {
+          textAlign: "center",
+          padding: "12px 8px",
+          background: dt > 0 ? "#F0FBF8" : "transparent"
+        }
+      }, dt > 0 ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          fontWeight: 800,
+          color: MTL.deepTeal
+        }
+      }, dt), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 2,
+          justifyContent: "center",
+          marginTop: 3,
+          flexWrap: "wrap"
+        }
+      }, STATUS_ORDER.filter(s => dc[s] > 0).map(s => /*#__PURE__*/React.createElement("span", {
+        key: s,
+        style: {
+          fontSize: 10,
+          background: getCfg(s).bg,
+          color: getCfg(s).text,
+          padding: "1px 4px",
+          borderRadius: 3,
+          fontWeight: 700
+        }
+      }, s[0], dc[s])))) : /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#D6DEE0",
+          fontSize: 18
+        }
+      }, "\u2014"));
+    }), /*#__PURE__*/React.createElement("td", {
       style: {
-        color: "#6B778C",
-        fontSize: 11,
-        marginTop: 2
-      }
-    }, run)), /*#__PURE__*/React.createElement("td", {
-      style: {
-        textAlign: "right",
+        textAlign: "center",
         padding: "12px 8px",
-        fontWeight: 700
+        fontSize: 20,
+        fontWeight: 800,
+        color: MTL.midTeal
       }
     }, total), /*#__PURE__*/React.createElement("td", {
       style: {
         padding: "12px 8px"
       }
-    }, /*#__PURE__*/React.createElement(MiniBar, {
+    }, /*#__PURE__*/React.createElement(TrendSparkline, {
+      dailyTotals: dailyTotals,
+      dates: allDates
+    })));
+  }), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: MTL.deepTeal,
+      borderTop: `2px solid ${MTL.gold}`
+    }
+  }, /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: "12px 14px",
+      fontWeight: 700,
+      color: MTL.gold
+    }
+  }, "Daily Total"), allDates.map(d => /*#__PURE__*/React.createElement("td", {
+    key: d,
+    style: {
+      textAlign: "center",
+      padding: "12px 8px",
+      fontSize: 16,
+      fontWeight: 800,
+      color: MTL.white
+    }
+  }, dateTotals[d]?.total || "—")), /*#__PURE__*/React.createElement("td", {
+    style: {
+      textAlign: "center",
+      padding: "12px 8px",
+      fontSize: 20,
+      fontWeight: 800,
+      color: MTL.gold
+    }
+  }, grandTotal), /*#__PURE__*/React.createElement("td", null)))))), tab === "testers" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(320px,1fr))",
+      gap: 20
+    }
+  }, noData ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...cardPlain,
+      gridColumn: "1/-1",
+      padding: "40px 0",
+      textAlign: "center",
+      color: "#A0ADB0"
+    }
+  }, "No execution data yet.") : allTesters.map(tester => {
+    const {
+      counts,
+      total
+    } = testerTotals[tester];
+    const dailyTotals = allDates.map(d => Object.values(dailyGrid[tester]?.[d] || {}).reduce((a, b) => a + b, 0));
+    const activeDays = dailyTotals.filter(v => v > 0).length;
+    const avg = activeDays ? Math.round(total / activeDays) : 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: tester,
+      style: card
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 800,
+        fontSize: 16,
+        color: MTL.deepTeal
+      }
+    }, tester), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MTL.grey,
+        marginTop: 2
+      }
+    }, total, " executed \xB7 ~", avg, "/day active")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 28,
+        fontWeight: 800,
+        color: MTL.midTeal
+      }
+    }, total)), /*#__PURE__*/React.createElement(MiniBar, {
       counts: counts,
       total: total
     }), /*#__PURE__*/React.createElement("div", {
       style: {
-        fontSize: 10,
-        color: "#6B778C",
-        marginTop: 3
+        display: "flex",
+        gap: 8,
+        marginTop: 12,
+        flexWrap: "wrap"
       }
-    }, total ? Math.round((counts["Passed"] || 0) / total * 100) : 0, "% passed")), STATUS_ORDER.map(s => /*#__PURE__*/React.createElement("td", {
+    }, STATUS_ORDER.map(s => counts[s] > 0 && /*#__PURE__*/React.createElement("span", {
       key: s,
       style: {
-        textAlign: "center",
-        padding: "12px 6px",
-        fontWeight: 700,
-        color: counts[s] ? getCfg(s).text : "#C1C7D0",
-        fontSize: 13
+        fontSize: 12,
+        background: getCfg(s).bg,
+        color: getCfg(s).text,
+        padding: "3px 9px",
+        borderRadius: 4,
+        fontWeight: 700
       }
-    }, counts[s] || 0)), /*#__PURE__*/React.createElement("td", {
+    }, s, ": ", counts[s], " (", Math.round(counts[s] / total * 100), "%)"))), /*#__PURE__*/React.createElement("div", {
       style: {
-        padding: "12px 8px"
+        marginTop: 16,
+        borderTop: `1px solid ${MTL.border}`,
+        paddingTop: 14
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        display: "flex",
-        gap: 4,
-        flexWrap: "wrap"
+        fontSize: 10,
+        color: MTL.gold,
+        fontWeight: 700,
+        marginBottom: 10,
+        textTransform: "uppercase",
+        letterSpacing: "1.5px"
       }
-    }, Object.keys(platformCounts).map(p => /*#__PURE__*/React.createElement("span", {
-      key: p,
+    }, "Daily breakdown"), allDates.map(d => {
+      const dc = dailyGrid[tester]?.[d] || {};
+      const dt = Object.values(dc).reduce((a, b) => a + b, 0);
+      if (!dt) return null;
+      return /*#__PURE__*/React.createElement("div", {
+        key: d,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          marginBottom: 8
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          minWidth: 55,
+          color: MTL.grey,
+          fontSize: 12
+        }
+      }, new Date(d).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short"
+      })), /*#__PURE__*/React.createElement(MiniBar, {
+        counts: dc,
+        total: dt
+      }), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontWeight: 700,
+          color: MTL.deepTeal,
+          minWidth: 24,
+          textAlign: "right"
+        }
+      }, dt));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, /*#__PURE__*/React.createElement(TrendSparkline, {
+      dailyTotals: dailyTotals,
+      dates: allDates
+    })));
+  })), tab === "runs" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: MTL.grey
+    }
+  }, allRuns.length, " test runs \xB7 click a row to expand daily and tester breakdown"), allRuns.map(run => {
+    const rs = runStats[run];
+    const executed = Object.entries(rs.counts).filter(([s]) => s !== "Untested").reduce((a, [, n]) => a + n, 0);
+    const isExpanded = expandedRun === run;
+    const runDates = Object.keys(rs.dailyCounts).sort();
+    const runTesters = Object.keys(rs.testerCounts).sort();
+    return /*#__PURE__*/React.createElement("div", {
+      key: run,
+      style: {
+        ...cardPlain,
+        padding: 0,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      onClick: () => setExpandedRun(isExpanded ? null : run),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        padding: "16px 20px",
+        cursor: "pointer",
+        borderBottom: isExpanded ? `1px solid ${MTL.border}` : "none",
+        background: isExpanded ? "#F8FAFA" : MTL.white
+      },
+      onMouseEnter: e => e.currentTarget.style.background = "#F8FAFA",
+      onMouseLeave: e => e.currentTarget.style.background = isExpanded ? "#F8FAFA" : MTL.white
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: MTL.gold,
+        fontWeight: 700,
+        minWidth: 16,
+        transition: "transform 0.2s",
+        transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+        display: "inline-block"
+      }
+    }, "\u25B6"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: "1 1 300px",
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 700,
+        color: MTL.deepTeal,
+        fontSize: 13,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
+      }
+    }, run), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: MTL.grey,
+        marginTop: 2
+      }
+    }, rs.platforms.join(" · "), " \xB7 ", rs.total, " tests")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: "1 1 160px",
+        minWidth: 100
+      }
+    }, /*#__PURE__*/React.createElement(MiniBar, {
+      counts: rs.counts,
+      total: rs.total
+    }), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 10,
-        background: "#F0F0F0",
-        color: "#5E6C84",
-        padding: "2px 5px",
-        borderRadius: 3,
-        fontWeight: 600
+        color: MTL.grey,
+        marginTop: 3
       }
-    }, p)))));
-  }))))), tab === "tests" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    }, Math.round((rs.counts["Passed"] || 0) / rs.total * 100), "% passed")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 6,
+        flexWrap: "wrap",
+        flex: "0 0 auto"
+      }
+    }, STATUS_ORDER.map(s => rs.counts[s] > 0 && /*#__PURE__*/React.createElement("span", {
+      key: s,
+      style: {
+        fontSize: 11,
+        background: getCfg(s).bg,
+        color: getCfg(s).text,
+        padding: "2px 7px",
+        borderRadius: 4,
+        fontWeight: 700
+      }
+    }, s === "In Progress" ? "In Prog" : s, ": ", rs.counts[s]))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right",
+        minWidth: 60
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 20,
+        fontWeight: 800,
+        color: MTL.midTeal
+      }
+    }, executed), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MTL.grey
+      }
+    }, "executed"))), isExpanded && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "16px 20px",
+        background: "#FAFBFB",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 24
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: MTL.gold,
+        textTransform: "uppercase",
+        letterSpacing: "1.5px",
+        marginBottom: 12
+      }
+    }, "Daily Execution"), runDates.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MTL.grey,
+        fontSize: 13
+      }
+    }, "No executions yet for this run.") : /*#__PURE__*/React.createElement("table", {
+      style: {
+        width: "100%",
+        borderCollapse: "collapse",
+        fontSize: 12
+      }
+    }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+      style: {
+        borderBottom: `2px solid ${MTL.border}`
+      }
+    }, /*#__PURE__*/React.createElement("th", {
+      style: {
+        textAlign: "left",
+        padding: "6px 8px",
+        color: MTL.grey,
+        fontWeight: 600,
+        fontSize: 11
+      }
+    }, "Date"), /*#__PURE__*/React.createElement("th", {
+      style: {
+        padding: "6px 8px",
+        color: MTL.grey,
+        fontWeight: 600,
+        fontSize: 11
+      }
+    }, "Progress"), STATUS_ORDER.slice(0, 4).map(s => /*#__PURE__*/React.createElement("th", {
+      key: s,
+      style: {
+        textAlign: "center",
+        padding: "6px 4px",
+        color: getCfg(s).text,
+        fontWeight: 700,
+        fontSize: 11
+      }
+    }, s === "In Progress" ? "IP" : s[0])), /*#__PURE__*/React.createElement("th", {
+      style: {
+        textAlign: "center",
+        padding: "6px 4px",
+        color: MTL.grey,
+        fontWeight: 700,
+        fontSize: 11
+      }
+    }, "Tot"))), /*#__PURE__*/React.createElement("tbody", null, runDates.map(d => {
+      const dc = rs.dailyCounts[d];
+      const dt = Object.values(dc).reduce((a, b) => a + b, 0);
+      return /*#__PURE__*/React.createElement("tr", {
+        key: d,
+        style: {
+          borderBottom: `1px solid ${MTL.border}`
+        }
+      }, /*#__PURE__*/React.createElement("td", {
+        style: {
+          padding: "8px 8px",
+          fontWeight: 600
+        }
+      }, new Date(d).toLocaleDateString("en-GB", {
+        weekday: "short",
+        day: "numeric",
+        month: "short"
+      })), /*#__PURE__*/React.createElement("td", {
+        style: {
+          padding: "8px 8px",
+          minWidth: 80
+        }
+      }, /*#__PURE__*/React.createElement(MiniBar, {
+        counts: dc,
+        total: dt
+      })), STATUS_ORDER.slice(0, 4).map(s => /*#__PURE__*/React.createElement("td", {
+        key: s,
+        style: {
+          textAlign: "center",
+          padding: "8px 4px",
+          fontWeight: 700,
+          color: dc[s] ? getCfg(s).text : "#D6DEE0"
+        }
+      }, dc[s] || 0)), /*#__PURE__*/React.createElement("td", {
+        style: {
+          textAlign: "center",
+          padding: "8px 4px",
+          fontWeight: 800,
+          color: MTL.deepTeal
+        }
+      }, dt));
+    })))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        fontWeight: 700,
+        color: MTL.gold,
+        textTransform: "uppercase",
+        letterSpacing: "1.5px",
+        marginBottom: 12
+      }
+    }, "By Tester"), runTesters.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MTL.grey,
+        fontSize: 13
+      }
+    }, "No executions yet for this run.") : runTesters.map(t => {
+      const tc = rs.testerCounts[t];
+      const tt = Object.values(tc).reduce((a, b) => a + b, 0);
+      return /*#__PURE__*/React.createElement("div", {
+        key: t,
+        style: {
+          marginBottom: 14
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: 4
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontWeight: 600,
+          fontSize: 13
+        }
+      }, t), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontWeight: 800,
+          color: MTL.midTeal
+        }
+      }, tt)), /*#__PURE__*/React.createElement(MiniBar, {
+        counts: tc,
+        total: tt
+      }), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 6,
+          marginTop: 6,
+          flexWrap: "wrap"
+        }
+      }, STATUS_ORDER.map(s => tc[s] > 0 && /*#__PURE__*/React.createElement("span", {
+        key: s,
+        style: {
+          fontSize: 11,
+          background: getCfg(s).bg,
+          color: getCfg(s).text,
+          padding: "1px 6px",
+          borderRadius: 3,
+          fontWeight: 700
+        }
+      }, s, ": ", tc[s]))));
+    }))));
+  })), tab === "tests" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      ...card,
+      ...cardPlain,
       marginBottom: 16,
       display: "flex",
       gap: 12,
       flexWrap: "wrap",
       alignItems: "center"
     }
-  }, /*#__PURE__*/React.createElement("input", {
-    placeholder: "Search test ID or title\u2026",
-    value: search,
-    onChange: e => setSearch(e.target.value),
+  }, /*#__PURE__*/React.createElement("select", {
+    value: filterRun,
+    onChange: e => setFilterRun(e.target.value),
     style: {
       flex: "1 1 200px",
       padding: "8px 12px",
-      border: "1px solid #DFE1E6",
-      borderRadius: 6,
+      border: `1px solid ${MTL.border}`,
+      borderRadius: 5,
       fontSize: 13,
-      outline: "none"
+      color: MTL.deepTeal
     }
-  }), /*#__PURE__*/React.createElement("select", {
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "All"
+  }, "All Test Runs"), allRuns.map(r => /*#__PURE__*/React.createElement("option", {
+    key: r,
+    value: r
+  }, r))), /*#__PURE__*/React.createElement("select", {
+    value: filterTester,
+    onChange: e => setFilterTester(e.target.value),
+    style: {
+      padding: "8px 12px",
+      border: `1px solid ${MTL.border}`,
+      borderRadius: 5,
+      fontSize: 13,
+      color: MTL.deepTeal
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "All"
+  }, "All Testers"), [...new Set(allRows.map(r => r.updatedBy || r.assignee))].sort().map(t => /*#__PURE__*/React.createElement("option", {
+    key: t
+  }, t))), /*#__PURE__*/React.createElement("select", {
+    value: filterDate,
+    onChange: e => setFilterDate(e.target.value),
+    style: {
+      padding: "8px 12px",
+      border: `1px solid ${MTL.border}`,
+      borderRadius: 5,
+      fontSize: 13,
+      color: MTL.deepTeal
+    }
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "All"
+  }, "All Dates"), allDates.map(d => /*#__PURE__*/React.createElement("option", {
+    key: d,
+    value: d
+  }, new Date(d).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short"
+  })))), /*#__PURE__*/React.createElement("select", {
     value: filterStatus,
     onChange: e => setFilterStatus(e.target.value),
     style: {
       padding: "8px 12px",
-      border: "1px solid #DFE1E6",
-      borderRadius: 6,
-      fontSize: 13
+      border: `1px solid ${MTL.border}`,
+      borderRadius: 5,
+      fontSize: 13,
+      color: MTL.deepTeal
     }
   }, /*#__PURE__*/React.createElement("option", {
     value: "All"
   }, "All Statuses"), STATUS_ORDER.map(s => /*#__PURE__*/React.createElement("option", {
-    key: s,
-    value: s
-  }, s))), /*#__PURE__*/React.createElement("select", {
-    value: filterPlatform,
-    onChange: e => setFilterPlatform(e.target.value),
-    style: {
-      padding: "8px 12px",
-      border: "1px solid #DFE1E6",
-      borderRadius: 6,
-      fontSize: 13
-    }
-  }, /*#__PURE__*/React.createElement("option", {
-    value: "All"
-  }, "All Platforms"), PLATFORMS.map(p => /*#__PURE__*/React.createElement("option", {
-    key: p,
-    value: p
-  }, p))), /*#__PURE__*/React.createElement("select", {
-    value: activeReq || "",
-    onChange: e => setActiveReq(e.target.value || null),
-    style: {
-      padding: "8px 12px",
-      border: "1px solid #DFE1E6",
-      borderRadius: 6,
-      fontSize: 13,
-      flex: "1 1 180px"
-    }
-  }, /*#__PURE__*/React.createElement("option", {
-    value: ""
-  }, "All Requirements"), byReq.map(r => /*#__PURE__*/React.createElement("option", {
-    key: r.req,
-    value: r.req
-  }, r.req.replace(/^HR-/, "")))), (filterStatus !== "All" || filterPlatform !== "All" || activeReq || search) && /*#__PURE__*/React.createElement("button", {
+    key: s
+  }, s))), (filterRun !== "All" || filterTester !== "All" || filterDate !== "All" || filterStatus !== "All") && /*#__PURE__*/React.createElement("button", {
     onClick: () => {
+      setFilterRun("All");
+      setFilterTester("All");
+      setFilterDate("All");
       setFilterStatus("All");
-      setFilterPlatform("All");
-      setActiveReq(null);
-      setSearch("");
     },
     style: {
       padding: "8px 14px",
-      border: "1px solid #DFE1E6",
-      borderRadius: 6,
+      border: `1px solid ${MTL.border}`,
+      borderRadius: 5,
       fontSize: 13,
       cursor: "pointer",
-      background: "#fff"
+      background: MTL.white
     }
   }, "\u2715 Clear"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 12,
-      color: "#6B778C",
+      color: MTL.grey,
       marginLeft: "auto"
     }
-  }, filteredTests.length, " tests")), /*#__PURE__*/React.createElement("div", {
-    style: card
+  }, filteredTests.length, " of ", allRows.length, " tests")), /*#__PURE__*/React.createElement("div", {
+    style: cardPlain
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       overflowX: "auto"
@@ -1387,84 +1635,81 @@ function SITDashboard() {
       borderCollapse: "collapse",
       fontSize: 12
     }
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
     style: {
-      background: "#F4F5F7",
-      borderBottom: "2px solid #DFE1E6"
-    }
-  }, /*#__PURE__*/React.createElement("th", {
-    style: {
-      textAlign: "left",
-      padding: "10px 12px",
-      fontWeight: 700,
+      ...thStyle,
       width: 130
     }
-  }, "Test Case ID"), /*#__PURE__*/React.createElement("th", {
-    style: {
-      textAlign: "left",
-      padding: "10px 8px",
-      fontWeight: 700
-    }
+  }, "Test ID"), /*#__PURE__*/React.createElement("th", {
+    style: thStyle
   }, "Title"), /*#__PURE__*/React.createElement("th", {
     style: {
-      textAlign: "left",
-      padding: "10px 8px",
-      fontWeight: 700,
+      ...thStyle,
+      width: 160
+    }
+  }, "Test Run"), /*#__PURE__*/React.createElement("th", {
+    style: {
+      ...thStyle,
       width: 90
     }
   }, "Platform"), /*#__PURE__*/React.createElement("th", {
     style: {
-      textAlign: "left",
-      padding: "10px 8px",
-      fontWeight: 700,
-      width: 80
-    }
-  }, "Priority"), /*#__PURE__*/React.createElement("th", {
-    style: {
-      textAlign: "left",
-      padding: "10px 8px",
-      fontWeight: 700,
+      ...thStyle,
       width: 110
     }
   }, "Status"), /*#__PURE__*/React.createElement("th", {
     style: {
-      textAlign: "left",
-      padding: "10px 8px",
-      fontWeight: 700,
-      width: 110
+      ...thStyle,
+      width: 120
     }
-  }, "Assignee"))), /*#__PURE__*/React.createElement("tbody", null, filteredTests.slice(0, 200).map(r => /*#__PURE__*/React.createElement("tr", {
-    key: r.id,
+  }, "Tester"), /*#__PURE__*/React.createElement("th", {
     style: {
-      borderBottom: "1px solid #F4F5F7"
+      ...thStyle,
+      width: 90
     }
+  }, "Date"))), /*#__PURE__*/React.createElement("tbody", null, filteredTests.slice(0, 300).map((r, i) => /*#__PURE__*/React.createElement("tr", {
+    key: i,
+    style: {
+      borderBottom: `1px solid ${MTL.border}`
+    },
+    onMouseEnter: e => e.currentTarget.style.background = "#F8FAFA",
+    onMouseLeave: e => e.currentTarget.style.background = "transparent"
   }, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: "9px 12px",
       fontFamily: "monospace",
       fontSize: 11,
-      color: "#0052CC",
+      color: MTL.midTeal,
       fontWeight: 600
     }
   }, r.id), /*#__PURE__*/React.createElement("td", {
     style: {
-      padding: "9px 8px",
-      color: "#172B4D"
+      padding: "9px 8px"
     }
-  }, /*#__PURE__*/React.createElement("div", null, r.title), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: MTL.deepTeal
+    }
+  }, r.title), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 10,
-      color: "#97A0AF",
+      color: "#A0ADB0",
       marginTop: 2
     }
-  }, r.req.replace(/^HR-/, ""))), /*#__PURE__*/React.createElement("td", {
+  }, r.req?.replace(/^HR-/, ""))), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: "9px 8px",
+      fontSize: 11,
+      color: MTL.grey
+    }
+  }, r.run), /*#__PURE__*/React.createElement("td", {
     style: {
       padding: "9px 8px"
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      background: "#F0F0F0",
-      color: "#5E6C84",
+      background: "#EEF1F2",
+      color: MTL.grey,
       padding: "2px 6px",
       borderRadius: 3,
       fontWeight: 600,
@@ -1474,35 +1719,46 @@ function SITDashboard() {
     style: {
       padding: "9px 8px"
     }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      background: r.priority === "High" ? "#FFEBE6" : r.priority === "Low" ? "#E3FCEF" : "#DEEBFF",
-      color: r.priority === "High" ? "#BF2600" : r.priority === "Low" ? "#006644" : "#0747A6",
-      padding: "2px 6px",
-      borderRadius: 3,
-      fontWeight: 600,
-      fontSize: 11
-    }
-  }, r.priority)), /*#__PURE__*/React.createElement("td", {
-    style: {
-      padding: "9px 8px"
-    }
-  }, /*#__PURE__*/React.createElement(StatusBadge, {
+  }, /*#__PURE__*/React.createElement(StatusPill, {
     status: r.status
   })), /*#__PURE__*/React.createElement("td", {
     style: {
       padding: "9px 8px",
-      color: "#6B778C"
+      color: MTL.grey
     }
-  }, r.assignee))))), filteredTests.length > 200 && /*#__PURE__*/React.createElement("div", {
+  }, r.updatedBy || r.assignee), /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: "9px 8px",
+      color: MTL.grey,
+      fontSize: 11
+    }
+  }, r.updatedDate ? new Date(r.updatedDate).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short"
+  }) : "—"))))), filteredTests.length > 300 && /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "12px 16px",
-      color: "#6B778C",
+      color: MTL.grey,
       fontSize: 12,
       textAlign: "center",
-      borderTop: "1px solid #F4F5F7"
+      borderTop: `1px solid ${MTL.border}`
     }
-  }, "Showing 200 of ", filteredTests.length, " \u2014 use filters to narrow results"))))));
+  }, "Showing 300 of ", filteredTests.length, " \u2014 use filters to narrow down")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 40,
+      paddingTop: 16,
+      borderTop: `1px solid ${MTL.border}`,
+      textAlign: "center",
+      fontSize: 11,
+      color: "#A0ADB0",
+      textTransform: "uppercase",
+      letterSpacing: "1px"
+    }
+  }, "Monument Technology \xB7 ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: MTL.gold
+    }
+  }, "Confidential & Private"))));
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
