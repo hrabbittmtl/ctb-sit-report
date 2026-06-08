@@ -1777,7 +1777,7 @@ function App() {
       color: MTL.grey,
       fontSize: 11
     }
-  }, r.updatedDate ? new Date(r.updatedDate).toLocaleDateString("en-GB", {
+  }, r.updatedDate ? new Date(r.updatedDate + "T12:00:00").toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short"
   }) : "—"))))), filteredTests.length > 300 && /*#__PURE__*/React.createElement("div", {
