@@ -350,8 +350,13 @@ const STATUS_CFG = {
     text: "#004048",
     bar: "#004048"
   }
+"N/A": {
+    bg: "#F0EEF8",
+    text: "#4A3B8C",
+    bar: "#9B8EC4"
+  }
 };
-const STATUS_ORDER = ["Passed", "Failed", "Blocked", "In Progress", "Untested"];
+const STATUS_ORDER = ["Passed", "Failed", "Blocked", "In Progress", "Untested", "N/A"];
 const getCfg = s => STATUS_CFG[s] || STATUS_CFG["Untested"];
 function parseCSV(text) {
   const lines = text.split("\n");
