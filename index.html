@@ -397,7 +397,7 @@ function parseCSV(text) {
       runId: r["Test Run ID"] || "",
       updatedAt: updatedRaw,
       updatedDate,
-      updatedBy: r["Test Run Last Updated By"] || assignee
+      updatedBy: r["Test Result Last Updated By"] || r["Test Run Assignee"] || "Unassigned"
     };
   });
   return {
