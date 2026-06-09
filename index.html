@@ -379,7 +379,7 @@ function parseCSV(text) {
     return "General";
   };
   const rows = data.map(r => {
-    const updatedRaw = r["Test Run Last Updated At"] || "";
+    const updatedRaw = r["Test Result Last Updated At"] || "";
     const updatedDate = updatedRaw ? new Date(updatedRaw).toLocaleDateString("en-CA") : null;
     const assignee = r["Test Case Assignee"] || r["Test Run Assignee"] || "Unassigned";
     return {
